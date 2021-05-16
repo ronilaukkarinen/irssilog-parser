@@ -24,9 +24,9 @@ if ( $logfile ) {
   while ( ( $line = fgets( $logfile ) ) !== false) {
 
     // Remove lines that contain actions
-    $ignored = array( 'opened', '-!-', 'Users', '[@', '!säännöt', ' * ', 'Topic', 'topic', '@', 'http', '’' );
-    $regex_find = array( '/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]/i', '/\<(.*?)\>/i', '/[a-zA-ZäöåÄÖÅ0-9_-]+:( )/i', '/!+[äöåÄÖÅa-zA-ZäöåÄÖÅ]/i' );
-    $regex_replace = array( '', '', '', '' );
+    $ignored = array( 'opened', '-!-', 'Users', '[@', '!säännöt', ' * ', 'Topic', 'topic', '@', 'http', '’', 'changed', 'Changed', '---' );
+    $regex_find = array( '/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]/i', '/\<(.*?)\>/i', '/[a-zA-ZäöåÄÖÅ0-9_-]+:( )/i', '/!+[äöåÄÖÅa-zA-ZäöåÄÖÅ]/i', 's/\'//g' );
+    $regex_replace = array( '', '', '', '', '' );
     
     if ( ! strposa( $line, $ignored, 1 ) ) {
 
