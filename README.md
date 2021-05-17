@@ -6,6 +6,6 @@
 
 ``` shell
 for X in *; do
-    php cli.php $X > $X.json
+  php cli.php $X > $X.json
 done
 ```
