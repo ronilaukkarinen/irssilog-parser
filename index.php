@@ -15,7 +15,7 @@ function removeNonBasicMultilingualPlane(string $text): string {
    return \preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $text);
 }
 
-$logfile = fopen("all.log", "r");
+$logfile = fopen($argv[1], "r");
 
 echo '{"conversations": [[';
 
