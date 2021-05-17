@@ -11,7 +11,7 @@ function strposa( $haystack, $needles = array(), $offset = 0 ) {
   return min( $chr );
 }
 
-$logfile = fopen("test.log", "r");
+$logfile = fopen("all.log", "r");
 
 echo 'conversation = [';
 
@@ -21,8 +21,8 @@ if ( $logfile ) {
 
     // Remove lines that contain actions
     $ignored = array( 'opened', '-!-', 'Users', '[@', '!säännöt', ' * ', 'Topic', 'topic', '@', 'http', '’', 'changed', 'Changed', '---', ',,', '__', '>>', '[', ']', 'Jape`:', '`' );
-    $regex_find = array( '/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]/i', '/\<(.*?)\>/i', '/[a-zA-ZäöåÄÖÅ0-9_-]+:( )/i', '/!+[äöåÄÖÅa-zA-ZäöåÄÖÅ]/i', '/"/' );
-    $regex_replace = array( '', '', '', '', '\"' );
+    $regex_find = array( '/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]/i', '/\<(.*?)\>/i', '/[a-zA-ZäöåÄÖÅ0-9_-]+:( )/i', '/[a-zA-ZäöåÄÖÅ0-9_-]+,( )/i', '/!+[äöåÄÖÅa-zA-ZäöåÄÖÅ]/i', '/"/' );
+    $regex_replace = array( '', '', '', '', '', '\"' );
     
     if ( ! strposa( $line, $ignored, 1 ) ) {
 
