@@ -13,11 +13,7 @@ function strposa( $haystack, $needles = array(), $offset = 0 ) {
 
 $logfile = fopen("all.log", "r");
 
-echo "categories:
-- AI
-- artificial intelligence
-conversations:
-";
+echo 'conversation = [';
 
 if ( $logfile ) {
   $i = 0;
@@ -25,19 +21,15 @@ if ( $logfile ) {
 
     // Remove lines that contain actions
     $ignored = array( 'opened', '-!-', 'Users', '[@', '!säännöt', ' * ', 'Topic', 'topic', '@', 'http', '’', 'changed', 'Changed', '---', ',,', '__', '>>', '[', ']', 'Jape`:', '`' );
-    $regex_find = array( '/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]/i', '/\<(.*?)\>/i', '/[a-zA-ZäöåÄÖÅ0-9_-]+:( )/i', '/!+[äöåÄÖÅa-zA-ZäöåÄÖÅ]/i' );
-    $regex_replace = array( '', '', '', '' );
+    $regex_find = array( '/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]/i', '/\<(.*?)\>/i', '/[a-zA-ZäöåÄÖÅ0-9_-]+:( )/i', '/!+[äöåÄÖÅa-zA-ZäöåÄÖÅ]/i', '/"/' );
+    $regex_replace = array( '', '', '', '', '\"' );
     
     if ( ! strposa( $line, $ignored, 1 ) ) {
 
       $processed_output = preg_replace( $regex_find, $regex_replace, $line );
       $caps = ucfirst( substr( $processed_output, 2) );
 
-      if ($i % 2 == 0 ) {
-        echo '  - ' . $caps;
-      } else {
-        echo '- - ' . $caps;
-      }
+        echo '"' . $caps . '",';
 
     }
 
@@ -46,3 +38,5 @@ if ( $logfile ) {
 
 fclose( $logfile );
 }
+
+echo ']';
