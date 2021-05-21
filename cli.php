@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable
 // Irssi log parser
 function strposa( $haystack, $needles = array(), $offset = 0 ) {
   $chr = array();
