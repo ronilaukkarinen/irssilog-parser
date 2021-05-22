@@ -17,7 +17,7 @@ function removeNonBasicMultilingualPlane(string $text): string {
 
 $logfile = fopen($argv[1], "r");
 
-echo '{"conversations": [[';
+// echo '{"conversations": [[';
 
 if ( $logfile ) {
   $i = 0;
@@ -41,12 +41,15 @@ if ( $logfile ) {
       $remove_diamonds = preg_replace( "/\x{FFFD}/u", "", $remove_line_breaks );
 
       // Output with double quotes
-      $output = '"' . $remove_diamonds . '",';
+      // $output = '"' . $remove_diamonds . '",';
+
+      // Output without double quotes
+      $output = $remove_diamonds;
 
       // Remove control characters like 0x13
       $output_remove_cntrl = preg_replace('/[[:cntrl:]]/', '', $output);
 
-      // Final output
+      // Final output for json
       $output_final = preg_replace( '/\"\./', '"', $output_remove_cntrl );
 
       // Remove mapping values from from output
@@ -63,4 +66,4 @@ if ( $logfile ) {
 fclose( $logfile );
 }
 
-echo ']]}';
+// echo ']]}';
